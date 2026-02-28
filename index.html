@@ -25,6 +25,9 @@
 
     <div class="particles"></div>
 
+    <!-- 🌸 Petals Canvas -->
+    <canvas id="petalCanvas"></canvas>
+
     <!-- 🔥 OPEN SCREEN -->
     <div id="openScreen">
         <button class="open-btn" onclick="openInvite()">Open Invitation</button>
@@ -60,43 +63,75 @@
         </lottie-player>
     </div>
 
-    <!-- COUNTDOWN -->
-    <section class="container text-center py-5">
-        <h2 id="countdown"></h2>
-    </section>
+    <!-- ⏳ Countdown Section -->
+    <div class="countdown-wrapper">
+        <h3 class="countdown-title">⏳ Countdown to Ceremony</h3>
+
+        <div id="countdown">
+            <div class="time-box">
+                <span id="days">00</span>
+                <small class="text-dark">Days</small>
+            </div>
+            <div class="time-box">
+                <span id="hours">00</span>
+                <small class="text-dark">Hours</small>
+            </div>
+            <div class="time-box">
+                <span id="minutes">00</span>
+                <small class="text-dark">Minutes</small>
+            </div>
+            <div class="time-box">
+                <span id="seconds">00</span>
+                <small class="text-dark">Seconds</small>
+            </div>
+        </div>
+    </div>
 
     <!-- EVENTS -->
     <section class="container py-5">
-        <div class="divider">🧸 ✨ 🧸</div>
-        <div class="row text-center">
+        <section class="invite-wrapper">
 
-            <div class="col-md-4" data-aos="fade-up">
-                <div class="glass-card">
-                    <h3>Naamkaran Vidhi</h3>
-                    <p>21 Dec 2026</p>
-                </div>
+            <p class="ganesh">
+                <span class="diya">🪔</span>
+                Shree Ganeshay Namah
+                <span class="diya">🪔</span>
+            </p>
+
+            <div class="divider"></div>
+
+            <p class="host">
+                <strong>Mr. Pandurang & Mrs. Jyoti Itkelwar</strong><br>
+                Cordially invite you to our grandson's
+            </p>
+
+            <h1 class="ceremony-title">Naming Ceremony</h1>
+
+            <div class="event-details">
+                <p class="date">
+                    📅 Saturday | 21st March 2026 | 6 PM onwards
+                </p>
+
+                <p class="venue-title">:: Venue ::</p>
+                <p class="venue">
+                    Dhanson's Lawn, C.A. Road,<br>
+                    Wardhaman Nagar Colony,<br>
+                    Nagpur – 440008
+                </p>
+
+                <p class="await">:: Awaiting Your Presence ::</p>
+
+                <p class="family">
+                    <strong>Itkelwar and Gadewar Family</strong>
+                </p>
             </div>
 
-            <div class="col-md-4" data-aos="fade-up">
-                <div class="glass-card">
-                    <h3>Pooja</h3>
-                    <p>06:00 PM onwards</p>
-                </div>
-            </div>
+        </section>
 
-            <div class="col-md-4" data-aos="fade-up">
-                <div class="glass-card">
-                    <h3>Lunch</h3>
-                    <p>After Function</p>
-                </div>
-            </div>
-
-        </div>
     </section>
+
 
     <!-- GALLERY -->
     <section class="container py-5 text-center">
-        <div class="divider">🧸 ✨ 🧸</div>
         <h2 data-aos="fade-up">Gallery</h2>
 
         <div id="gallerySlider" class="mt-4">
@@ -126,7 +161,6 @@
 
     <!-- MAP -->
     <section class="container py-5 text-center">
-        <div class="divider">🧸 ✨ 🧸</div>
         <h2 data-aos="fade-up">Venue Location</h2>
 
         <iframe src="https://maps.google.com/maps?q=Nagpur&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%"
@@ -135,19 +169,22 @@
     </section>
 
     <!-- RSVP -->
-    <section class="container py-5">
-        <div class="divider">🧸 ✨ 🧸</div>
-        <div class="rsvp-box text-center" data-aos="zoom-in">
-            <h2>Please Reply</h2>
+    <section class="rsvp-section">
 
-            <form action="PASTE_GOOGLE_FORM_ACTION_HERE" method="POST">
-                <input class="form-control mb-3" placeholder="Your Name" required>
-                <input class="form-control mb-3" placeholder="Mobile Number" required>
-                <button class="btn btn-warning">Send Wishes</button>
-            </form>
+        <h2 class="rsvp-title">💌 Send Your Wishes</h2>
 
-            <p id="rsvpMsg" class="mt-3"></p>
-        </div>
+        <form name="rsvp" netlify  method="POST" data-netlify="true">
+            <input type="hidden" name="form-name" value="rsvp">
+
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="number" name="guests" placeholder="Number of Guests" required>
+            <textarea name="message" placeholder="Your Wishes"></textarea>
+
+            <button type="submit">Send Wishes 💌</button>
+        </form>
+
+        <p id="rsvpMsg"></p>
+
     </section>
 
     <!-- 🎵 Background Music -->
@@ -223,40 +260,39 @@
             }
         });
 
-        /* ⏳ countdown */
-        const targetDate = new Date("March 19, 2026 10:00:00").getTime();
+        // ⏳ Countdown (stable version)
+        const eventDate = new Date("2026-03-21T18:00:00+05:30").getTime();
 
-        setInterval(() => {
+        function updateCountdown() {
             const now = new Date().getTime();
-            const gap = targetDate - now;
+            const gap = eventDate - now;
 
-            const d = Math.floor(gap / (1000 * 60 * 60 * 24));
-            const h = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const m = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
-            const s = Math.floor((gap % (1000 * 60)) / 1000);
+            if (gap <= 0) {
+                document.getElementById("countdown").innerHTML =
+                    "<h3>🎉 Ceremony Started!</h3>";
+                return;
+            }
 
-            document.getElementById("countdown").innerHTML =
-                `${d}d ${h}h ${m}m ${s}s`;
-        }, 1000);
+            const days = Math.floor(gap / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((gap / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((gap / (1000 * 60)) % 60);
+            const seconds = Math.floor((gap / 1000) % 60);
+
+            document.getElementById("days").textContent = String(days).padStart(2, "0");
+            document.getElementById("hours").textContent = String(hours).padStart(2, "0");
+            document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
+            document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
 
         /* RSVP fake submit */
-        function submitRSVP(e) {
-            e.preventDefault();
-            document.getElementById("rsvpMsg").innerText =
-                "Thank you! Your wishes have been received ❤️";
-        }
-
-        /* 🍼 create particles */
-
-        const particlesContainer = document.querySelector(".particles");
-
-        for (let i = 0; i < 20; i++) {
-            const span = document.createElement("span");
-            span.innerHTML = "🎈";
-            span.style.left = Math.random() * 100 + "%";
-            span.style.animationDuration = (6 + Math.random() * 6) + "s";
-            particlesContainer.appendChild(span);
-        }
+        document.querySelector("form[name='rsvp']")
+            .addEventListener("submit", function () {
+                document.getElementById("rsvpMsg").innerText =
+                    "Sending your wishes... 💌";
+            });
 
         /* 💌 guest name from URL */
 
@@ -358,6 +394,80 @@
                 }, 250);
             }
         });
+
+        // 🌸 Falling Petals (Ultra Smooth)
+
+        const canvas = document.getElementById("petalCanvas");
+        const ctx = canvas.getContext("2d");
+
+        let petals = [];
+        const petalCount = 25; // performance friendly
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener("resize", resizeCanvas);
+
+        // 🌸 Petal class
+        class Petal {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * -canvas.height;
+                this.size = Math.random() * 8 + 6;
+                this.speedY = Math.random() * 1 + 0.6;
+                this.speedX = Math.random() * 0.6 - 0.3;
+                this.rotation = Math.random() * 360;
+            }
+
+            update() {
+                this.y += this.speedY;
+                this.x += this.speedX;
+                this.rotation += 0.5;
+
+                if (this.y > canvas.height) {
+                    this.reset();
+                    this.y = -10;
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rotation * Math.PI / 180);
+
+                ctx.fillStyle = "#ffb6c1";
+                ctx.beginPath();
+                ctx.ellipse(0, 0, this.size, this.size * 0.6, 0, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.restore();
+            }
+        }
+
+        // create petals
+        for (let i = 0; i < petalCount; i++) {
+            petals.push(new Petal());
+        }
+
+        // animation loop
+        function animatePetals() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            petals.forEach(p => {
+                p.update();
+                p.draw();
+            });
+
+            requestAnimationFrame(animatePetals);
+        }
+
+        animatePetals();
     </script>
 
 </body>
