@@ -173,18 +173,22 @@
 
         <h2 class="rsvp-title">💌 Send Your Wishes</h2>
 
-        <form name="rsvp" method="POST" data-netlify="true">
+        <form name="rsvp" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="submitRSVP(event)">
+
+            <!-- Netlify required hidden input -->
             <input type="hidden" name="form-name" value="rsvp">
+
+            <!-- honeypot (spam protection) -->
+            <input type="hidden" name="bot-field">
 
             <input type="text" name="name" placeholder="Your Name" required>
             <input type="number" name="guests" placeholder="Number of Guests" required>
             <textarea name="message" placeholder="Your Wishes"></textarea>
 
             <button type="submit">Send Wishes 💌</button>
-            
-            <p id="rsvpMsg"></p>
         </form>
 
+        <p id="rsvpMsg"></p>
 
     </section>
 
@@ -288,12 +292,30 @@
         updateCountdown();
         setInterval(updateCountdown, 1000);
 
-        /* RSVP fake submit */
-        document.querySelector("form[name='rsvp']")
-            .addEventListener("submit", function () {
-                document.getElementById("rsvpMsg").innerText =
-                    "Sending your wishes... 💌";
-            });
+        function submitRSVP(e) {
+            e.preventDefault(); // ⭐ MUST
+
+            document.getElementById("rsvpMsg").innerText =
+                "Sending your wishes... 💌";
+
+            // submit form manually to Netlify
+            const form = e.target;
+            const data = new FormData(form);
+
+            fetch("/", {
+                method: "POST",
+                body: data
+            })
+                .then(() => {
+                    document.getElementById("rsvpMsg").innerText =
+                        "Thank you! Your wishes have been received ❤️";
+                    form.reset();
+                })
+                .catch(() => {
+                    document.getElementById("rsvpMsg").innerText =
+                        "Oops! Something went wrong.";
+                });
+        }
 
         /* 💌 guest name from URL */
 
