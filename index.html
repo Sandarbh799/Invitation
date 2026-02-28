@@ -173,7 +173,7 @@
 
         <h2 class="rsvp-title">💌 Send Your Wishes</h2>
 
-        <form name="rsvp" netlify  method="POST" data-netlify="true">
+        <form name="rsvp" method="POST" data-netlify="true">
             <input type="hidden" name="form-name" value="rsvp">
 
             <input type="text" name="name" placeholder="Your Name" required>
@@ -181,9 +181,10 @@
             <textarea name="message" placeholder="Your Wishes"></textarea>
 
             <button type="submit">Send Wishes 💌</button>
+            
+            <p id="rsvpMsg"></p>
         </form>
 
-        <p id="rsvpMsg"></p>
 
     </section>
 
