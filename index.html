@@ -50,18 +50,18 @@
     <!-- HERO -->
     <section class="hero">
         <div data-aos="zoom-in">
-            <h1 class="couple-name">Baby of Mahesh & Pankhudi 👶</h1>
-            <p id="guestLine" class="subtitle-glow">
+            <h1 class="couple-name fw-1">Baby of Mahesh & Pankhudi 👶</h1>
+            <p id="guestLine" class="subtitle-glow fs-3">
                 Join us for the Naming Ceremony
             </p>
         </div>
     </section>
 
-    <div style="text-align:center;margin-top:-40px;">
+    <!-- <div style="text-align:center;margin-top:-40px;">
         <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_jcikwtux.json" background="transparent"
             speed="1" style="width:200px;height:200px;margin:auto;" loop autoplay>
         </lottie-player>
-    </div>
+    </div> -->
 
     <!-- ⏳ Countdown Section -->
     <div class="countdown-wrapper">
@@ -143,12 +143,12 @@
         <h2 class="gallery-title">📸 Precious Moments</h2>
 
         <div class="gallery-grid">
-            <img src="https://picsum.photos/600/800?random=1" class="parallax-img">
-            <img src="https://picsum.photos/600/700?random=2" class="parallax-img">
-            <img src="https://picsum.photos/600/750?random=3" class="parallax-img">
-            <img src="https://picsum.photos/600/720?random=4" class="parallax-img">
-            <img src="https://picsum.photos/600/780?random=5" class="parallax-img">
-            <img src="https://picsum.photos/600/760?random=6" class="parallax-img">
+            <img src="102.jpg" class="parallax-img">
+            <img src="944.jpg" class="parallax-img">
+            <img src="953.jpg" class="parallax-img">
+            <img src="4935.jpg" class="parallax-img">
+            <img src="2150795866.jpg" class="parallax-img">
+            <img src="956.jpg" class="parallax-img">
         </div>
     </section>
 
@@ -182,6 +182,7 @@
         <p id="rsvpMsg"></p>
 
     </section>
+    
 
     <!-- 🎵 Background Music -->
     <audio id="bgMusic" loop>
@@ -192,6 +193,7 @@
     <div id="musicBtn">🔊</div>
 
     <a id="waShare" class="wa-btn" target="_blank">💬</a>
+    
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
@@ -283,30 +285,6 @@
         updateCountdown();
         setInterval(updateCountdown, 1000);
 
-        // function submitRSVP(e) {
-        //     e.preventDefault(); // ⭐ MUST
-
-        //     document.getElementById("rsvpMsg").innerText =
-        //         "Sending your wishes... 💌";
-
-        //     // submit form manually to Netlify
-        //     const form = e.target;
-        //     const data = new FormData(form);
-
-        //     fetch("/", {
-        //         method: "POST",
-        //         body: data
-        //     })
-        //         .then(() => {
-        //             document.getElementById("rsvpMsg").innerText =
-        //                 "Thank you! Your wishes have been received ❤️";
-        //             form.reset();
-        //         })
-        //         .catch(() => {
-        //             document.getElementById("rsvpMsg").innerText =
-        //                 "Oops! Something went wrong.";
-        //         });
-        // }
 
         document.getElementById("rsvpMsg").innerText =
             "Thank you! Your wishes sent ❤️";
