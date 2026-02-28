@@ -1,0 +1,434 @@
+body {
+    margin: 0;
+    font-family: 'Playfair Display', serif;
+    background: #000;
+    color: #fff;
+    scroll-behavior: smooth;
+}
+
+/* 🔥 Opening Screen */
+#openScreen {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.open-btn {
+    padding: 15px 40px;
+    font-size: 22px;
+    background: #d4af37;
+    border: none;
+    border-radius: 50px;
+}
+
+/* HERO */
+.hero {
+    height: 100vh;
+    background: url('bg.jpg') center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    min-height: 100vh;
+    background: url('bg.jpg') center/cover no-repeat;
+
+}
+
+.couple-name{
+  font-family:'Great Vibes', cursive;
+  font-size: clamp(42px,7vw,72px);
+  background: linear-gradient(
+    90deg,
+    #ffd700,
+    #fff3a0,
+    #ffd700,
+    #d4af37
+  );
+  background-size:300% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: goldShine 4s linear infinite;
+  letter-spacing:2px;
+}
+
+@keyframes goldShine{
+  to{
+    background-position:300% center;
+  }
+}
+
+/* 🎵 Premium Music Button */
+#musicBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, #d4af37, #f1d77a);
+  color: white;
+  font-size: 22px;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+  z-index: 999;
+  transition: 0.3s;
+  animation: pulseMusic 2s infinite;
+}
+
+#musicBtn:hover {
+  transform: scale(1.12);
+}
+
+/* pulse animation */
+@keyframes pulseMusic {
+  0% { box-shadow: 0 0 0 0 rgba(212,175,55,0.6); }
+  70% { box-shadow: 0 0 0 18px rgba(212,175,55,0); }
+  100% { box-shadow: 0 0 0 0 rgba(212,175,55,0); }
+}
+
+/* Gallery */
+.gallery img {
+    width: 100%;
+    border-radius: 15px;
+    transition: .4s;
+}
+
+.gallery img:hover {
+    transform: scale(1.05);
+}
+
+/* 🌸 Baby Theme Enhancement */
+
+body {
+    background: linear-gradient(135deg, #000000, #1a1a1a);
+}
+
+.couple-name {
+    font-size: clamp(36px, 6vw, 60px);
+    color: #ffd700;
+}
+
+/* soft overlay on hero */
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+}
+
+.hero>div {
+    position: relative;
+    z-index: 2;
+}
+
+/* event cards baby style */
+.container h3 {
+    color: #ffd700;
+}
+
+/* RSVP box */
+.rsvp-box {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 30px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+}
+
+/* 🍼 Floating particles */
+
+.particles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.particles span {
+    position: absolute;
+    display: block;
+    font-size: 20px;
+    animation: floatUp linear infinite;
+    opacity: 0.6;
+}
+
+@keyframes floatUp {
+    from {
+        transform: translateY(100vh);
+    }
+
+    to {
+        transform: translateY(-10vh);
+    }
+}
+
+/* 🎨 Theme switcher */
+
+.theme-btn {
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background: #ffd700;
+    z-index: 999;
+    cursor: pointer;
+}
+
+/* baby pastel theme */
+
+body.pastel {
+    background: linear-gradient(135deg, #ffe6f0, #e6f7ff);
+    color: #333;
+}
+
+body.pastel .couple-name {
+    color: #ff4d88;
+}
+
+body.pastel .open-btn {
+    background: #ff4d88;
+}
+
+
+/* 📱 WhatsApp button */
+
+.wa-btn {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: #25D366;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    text-decoration: none;
+    z-index: 999;
+}
+
+
+/* 🌟 glass cards */
+
+.glass-card{
+  background:rgba(255,255,255,0.08);
+  border-radius:20px;
+  padding:25px;
+  backdrop-filter: blur(12px);
+  border:1px solid rgba(255,255,255,0.15);
+  transition:.4s;
+}
+
+.glass-card:hover{
+  transform:translateY(-8px) scale(1.02);
+}
+
+.hero{
+  position:relative;
+  min-height:100vh;
+  background:url('bg.jpg') center/cover no-repeat;
+  animation: heroZoom 20s ease-in-out infinite alternate;
+}
+
+@keyframes heroZoom{
+  from{ background-size:100%; }
+  to{ background-size:115%; }
+}
+
+
+.divider{
+  text-align:center;
+  font-size:28px;
+  margin:40px 0;
+  opacity:0.8;
+}
+
+@media (max-width:768px){
+
+  .couple-name{
+    font-size:42px;
+  }
+
+  .hero{
+    min-height:90vh;
+    padding:20px;
+  }
+
+  .glass-card{
+    padding:18px;
+  }
+
+}
+
+
+.subtitle-glow{
+  font-size:18px;
+  background:linear-gradient(90deg,#ff9ec4,#ffd700,#9ad9ff);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  animation: glowMove 6s linear infinite;
+}
+
+@keyframes glowMove{
+  to{ background-position:200% center; }
+}
+
+@keyframes confettiFall{
+  to{
+    transform:translateY(110vh) rotate(720deg);
+    opacity:0.3;
+  }
+}
+
+@keyframes sparkleFade{
+  to{
+    transform:translateY(-20px);
+    opacity:1;
+  }
+}
+
+body{
+  animation: pageFade 1.4s ease;
+}
+
+@keyframes pageFade{
+  from{
+    opacity:0;
+    transform:translateY(20px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+
+/* 🌌 Parallax Gallery — FIXED */
+
+.parallax-gallery{
+  position:relative;
+  padding:80px 0;
+}
+
+.p-item{
+  position:relative;
+  height:420px;
+  margin:60px auto;
+  width:min(90%,900px);
+  border-radius:24px;
+  overflow:hidden;
+  box-shadow:0 25px 60px rgba(0,0,0,0.6);
+  z-index:2;
+}
+
+.p-item img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  transform:translateY(0);
+  will-change:transform;
+}
+
+/* overlay — but not blocking */
+
+.p-item::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.15),
+    rgba(0,0,0,0.45)
+  );
+  pointer-events:none;
+}
+
+
+@media (max-width:768px){
+
+  .p-item{
+    height:260px;
+    margin:40px auto;
+  }
+
+  .p-item img{
+    height:115%;
+  }
+
+}
+
+/* 👶 Baby Reveal Section */
+.baby-reveal-section {
+  text-align: center;
+  padding: 80px 20px;
+  background: linear-gradient(135deg,#fff5e6,#ffe4ec);
+}
+
+.reveal-title {
+  font-family: Georgia, serif;
+  font-size: 32px;
+  color: #b76e79;
+  margin-bottom: 40px;
+}
+
+/* frame */
+.baby-frame {
+  position: relative;
+  display: inline-block;
+  border-radius: 25px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+  cursor: pointer;
+}
+
+/* image hidden initially */
+#babyPhoto {
+  width: 320px;
+  max-width: 90vw;
+  display: block;
+  filter: blur(12px) brightness(0.7);
+  transform: scale(1.2);
+  transition: 1s ease;
+}
+
+/* overlay */
+.reveal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(212,175,55,0.75);
+  color: white;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  letter-spacing: 1px;
+  transition: 0.6s;
+}
+
+/* reveal state */
+.baby-frame.revealed #babyPhoto {
+  filter: blur(0) brightness(1);
+  transform: scale(1);
+}
+
+.baby-frame.revealed .reveal-overlay {
+  opacity: 0;
+  pointer-events: none;
+}

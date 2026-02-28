@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Naming Ceremony Invitation</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+body{
+  margin:0;
+  font-family:Poppins, sans-serif;
+  background:linear-gradient(135deg,#f4e2c6,#e8cfae);
+  height:100vh;
+  overflow:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+/* ===== OUTSIDE SOFT GLOW ===== */
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255,215,150,.25), transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(255,150,200,.25), transparent 40%);
+  z-index:0;
+  pointer-events:none;
+}
+
+/* ===== ENVELOPE ===== */
+.envelope-wrapper{
+  position:absolute;
+  z-index:20;
+  text-align:center;
+}
+
+.envelope{
+  width:240px;
+  height:150px;
+  background:#8b004b;
+  position:relative;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.flap{
+  position:absolute;
+  top:-75px;
+  left:0;
+  width:0;
+  height:0;
+  border-left:120px solid transparent;
+  border-right:120px solid transparent;
+  border-bottom:75px solid #a3005a;
+  transform-origin:bottom;
+  transition:.9s;
+}
+
+.envelope-text{
+  margin-top:14px;
+  font-weight:bold;
+  color:#8b004b;
+  animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+  0%,100%{opacity:1}
+  50%{opacity:.4}
+}
+
+/* ===== CARD ===== */
+.card{
+  width:430px;
+  max-width:95%;
+  background:#efe2cf;
+  border:6px solid #caa32a;
+  border-radius:20px;
+  padding:95px 28px 45px;
+  text-align:center;
+  box-shadow:0 25px 60px rgba(0,0,0,.25);
+  display:none;
+  position:relative;
+  z-index:5;
+  animation:fadeIn .9s ease;
+}
+
+@keyframes fadeIn{
+  from{opacity:0; transform:scale(.92)}
+  to{opacity:1; transform:scale(1)}
+}
+
+/* ===== ARCH ===== */
+.card::before{
+  content:"";
+  position:absolute;
+  top:-95px;
+  left:50%;
+  transform:translateX(-50%);
+  width:300px;
+  height:150px;
+  background:#e7cfa8;
+  border:6px solid #caa32a;
+  border-bottom:none;
+  border-top-left-radius:240px;
+  border-top-right-radius:240px;
+  z-index:-1;
+}
+
+/* ===== BELLS ===== */
+.bells{
+  position:absolute;
+  top:-105px;
+  left:50%;
+  transform:translateX(-50%);
+  width:82%;
+  display:flex;
+  justify-content:space-between;
+  pointer-events:none;
+}
+
+.bell{
+  width:42px;
+  animation:swing 2.6s ease-in-out infinite;
+  transform-origin:top center;
+}
+
+.bell img{width:100%;}
+.bell:nth-child(2){animation-delay:.3s}
+.bell:nth-child(3){animation-delay:.6s}
+.bell:nth-child(4){animation-delay:.9s}
+
+@keyframes swing{
+  0%,100%{transform:rotate(0deg)}
+  50%{transform:rotate(12deg)}
+}
+
+/* ===== FLOWERS ===== */
+.flower{
+  position:absolute;
+  width:85px;
+  pointer-events:none;
+}
+.flower img{width:100%;}
+.flower.tl{top:-28px; left:-18px}
+.flower.tr{top:-28px; right:-18px; transform:scaleX(-1);}
+.flower.bl{bottom:-28px; left:-18px; transform:scaleY(-1);}
+.flower.br{bottom:-28px; right:-18px; transform:scale(-1);}
+
+/* ===== BABY FRAME ===== */
+.baby-frame{
+  width:110px;
+  height:110px;
+  border-radius:50%;
+  overflow:hidden;
+  margin:0 auto 10px;
+  border:4px solid #caa32a;
+  box-shadow:0 10px 25px rgba(0,0,0,.25);
+}
+
+.baby-frame img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* ===== TEXT ===== */
+.top{font-size:14px;color:#8b5a2b;margin-bottom:8px;}
+.parents{font-size:19px;color:#5a2d0c;font-weight:bold;}
+.main-title{
+  font-size:40px;
+  color:#8b004b;
+  font-family:"Playfair Display", serif;
+  margin:12px 0;
+}
+.message{font-size:15px;color:#444;line-height:1.6;}
+.details{margin-top:14px;font-size:16px;color:#5a2d0c;line-height:1.8;}
+.footer{margin-top:20px;font-size:15px;color:#8b004b;font-weight:bold;}
+
+/* ===== BALLOONS ===== */
+.balloon{
+  position:absolute;
+  bottom:-120px;
+  width:55px;
+  height:75px;
+  border-radius:50%;
+  animation:floatUp linear infinite;
+}
+.balloon::after{
+  content:"";
+  position:absolute;
+  bottom:-35px;
+  left:50%;
+  width:2px;
+  height:35px;
+  background:#555;
+}
+@keyframes floatUp{
+  from{transform:translateY(0)}
+  to{transform:translateY(-120vh)}
+}
+
+/* ===== CONFETTI ===== */
+#confettiCanvas{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:2;
+}
+
+/* ===== MUSIC BUTTON ===== */
+.music-btn{
+  position:fixed;
+  bottom:15px;
+  right:15px;
+  background:#8b004b;
+  color:white;
+  border:none;
+  padding:10px 14px;
+  border-radius:25px;
+  cursor:pointer;
+  z-index:50;
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<audio id="bgMusic" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+<button class="music-btn" onclick="toggleMusic()">🎵 Music</button>
+
+<!-- ENVELOPE -->
+<div class="envelope-wrapper" id="envWrap" onclick="openEnvelope()">
+  <div class="envelope">
+    <div class="flap" id="flap"></div>
+  </div>
+  <div class="envelope-text">Tap to Open Invitation</div>
+</div>
+
+<canvas id="confettiCanvas"></canvas>
+
+<!-- BALLOONS -->
+<div class="balloon" style="left:10%; background:#ff6fa5; animation-duration:9s;"></div>
+<div class="balloon" style="left:30%; background:#6f9bff; animation-duration:11s;"></div>
+<div class="balloon" style="left:70%; background:#ffd84d; animation-duration:8s;"></div>
+<div class="balloon" style="left:90%; background:#8affc1; animation-duration:10s;"></div>
+
+<!-- CARD -->
+<div class="card" id="card">
+
+  <div class="bells">
+    <div class="bell"><img src="bell.png"></div>
+    <div class="bell"><img src="bell.png"></div>
+    <div class="bell"><img src="bell.png"></div>
+    <div class="bell"><img src="bell.png"></div>
+  </div>
+
+  <div class="flower tr"><img src="flower.png"></div>
+  <div class="flower tl"><img src="flower.png"></div>
+  <div class="flower br"><img src="flower.png"></div>
+  <div class="flower bl"><img src="flower.png"></div>
+
+  <div class="baby-frame">
+    <img src="baby.jpg">
+  </div>
+
+  <div class="top" id="topText"></div>
+  <div class="parents" id="parents"></div>
+  <div class="message" id="message"></div>
+  <div class="main-title" id="ceremonyTitle"></div>
+
+  <div class="details">
+    <div id="date"></div>
+    <div id="time"></div>
+    <div id="dinner"></div>
+    <div id="venue"></div>
+  </div>
+
+  <div class="footer" id="footer"></div>
+</div>
+
+<script>
+function openEnvelope(){
+  flap.style.transform="rotateX(180deg)";
+  envWrap.style.display="none";
+  card.style.display="block";
+  startConfetti();
+  bgMusic.play().catch(()=>{});
+}
+
+const bgMusic=document.getElementById("bgMusic");
+function toggleMusic(){
+  if(bgMusic.paused) bgMusic.play();
+  else bgMusic.pause();
+}
+
+/* CONFETTI */
+const canvas=document.getElementById("confettiCanvas");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let confetti=[];
+function startConfetti(){
+  confetti=[];
+  for(let i=0;i<180;i++){
+    confetti.push({
+      x:Math.random()*canvas.width,
+      y:Math.random()*canvas.height-canvas.height,
+      r:Math.random()*6+2,
+      color:`hsl(${Math.random()*360},100%,50%)`
+    });
+  }
+}
+function draw(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  confetti.forEach(c=>{
+    ctx.beginPath();
+    ctx.fillStyle=c.color;
+    ctx.arc(c.x,c.y,c.r,0,Math.PI*2);
+    ctx.fill();
+    c.y+=2;
+    if(c.y>canvas.height) c.y=-10;
+  });
+}
+setInterval(draw,20);
+
+/* LANGUAGE */
+const lang=localStorage.getItem("lang")||"en";
+
+const enData={
+  top:"The Blessings, The Love — Little Miracles Sent From Above",
+  parents:"We Are Happy To Invite You",
+  message:"With immense joy, we invite you to our baby's Naming Ceremony.",
+  ceremony:"Naming Ceremony",
+  date:"📅 Thursday, 15th August 2024",
+  time:"⏰ From 06:00 PM onwards",
+  dinner:"🍽️ Followed By Dinner",
+  venue:"📍 City Avenue \"The Lords\", Daund",
+  footer:"Kindly Grace The Occasion With Your Presence & Blessings"
+};
+
+const mrData={
+  top:"आशीर्वाद, प्रेम — देवाकडून आलेले गोड चमत्कार",
+  parents:"आपणांस सप्रेम निमंत्रण",
+  message:"आमच्या बाळाच्या नामकरण समारंभास उपस्थित राहावे ही नम्र विनंती.",
+  ceremony:"नामकरण समारंभ",
+  date:"📅 गुरुवार, १५ ऑगस्ट २०२४",
+  time:"⏰ सायं. ०६:०० पासून",
+  dinner:"🍽️ नंतर भोजन व्यवस्था",
+  venue:"📍 सिटी अव्हेन्यू \"द लॉर्ड्स\", दौंड",
+  footer:"आपल्या उपस्थितीची नम्र अपेक्षा"
+};
+
+const d=lang==="mr"?mrData:enData;
+topText.innerText=d.top;
+parents.innerText=d.parents;
+message.innerText=d.message;
+ceremonyTitle.innerText=d.ceremony;
+date.innerText=d.date;
+time.innerText=d.time;
+dinner.innerText=d.dinner;
+venue.innerText=d.venue;
+footer.innerText=d.footer;
+
+window.addEventListener("resize",()=>{
+  canvas.width=window.innerWidth;
+  canvas.height=window.innerHeight;
+});
+</script>
+
+</body>
+</html>

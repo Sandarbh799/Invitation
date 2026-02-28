@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naming Ceremony Invitation</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="script.js">
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600&display=swap"
+        rel="stylesheet">
+
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</head>
+
+<body>
+
+    <button id="themeToggle" class="theme-btn">🎨</button>
+
+    <div class="particles"></div>
+
+    <!-- 🔥 OPEN SCREEN -->
+    <div id="openScreen">
+        <button class="open-btn" onclick="openInvite()">Open Invitation</button>
+    </div>
+
+    <!-- 👶 Baby Reveal Section -->
+    <section class="baby-reveal-section">
+
+        <h2 class="reveal-title">✨ Meet Our Little Star ✨</h2>
+
+        <div class="baby-frame" id="babyFrame">
+            <img src="img1.jpg" alt="Baby Photo" id="babyPhoto">
+            <div class="reveal-overlay" id="revealOverlay">
+                Tap to Reveal 👶
+            </div>
+        </div>
+
+    </section>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div data-aos="zoom-in">
+            <h1 class="couple-name">Baby of Mahesh & Pankhudi 👶</h1>
+            <p id="guestLine" class="subtitle-glow">
+                Join us for the Naming Ceremony
+            </p>
+        </div>
+    </section>
+
+    <div style="text-align:center;margin-top:-40px;">
+        <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_jcikwtux.json" background="transparent"
+            speed="1" style="width:200px;height:200px;margin:auto;" loop autoplay>
+        </lottie-player>
+    </div>
+
+    <!-- COUNTDOWN -->
+    <section class="container text-center py-5">
+        <h2 id="countdown"></h2>
+    </section>
+
+    <!-- EVENTS -->
+    <section class="container py-5">
+        <div class="divider">🧸 ✨ 🧸</div>
+        <div class="row text-center">
+
+            <div class="col-md-4" data-aos="fade-up">
+                <div class="glass-card">
+                    <h3>Naamkaran Vidhi</h3>
+                    <p>21 Dec 2026</p>
+                </div>
+            </div>
+
+            <div class="col-md-4" data-aos="fade-up">
+                <div class="glass-card">
+                    <h3>Pooja</h3>
+                    <p>06:00 PM onwards</p>
+                </div>
+            </div>
+
+            <div class="col-md-4" data-aos="fade-up">
+                <div class="glass-card">
+                    <h3>Lunch</h3>
+                    <p>After Function</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="container py-5 text-center">
+        <div class="divider">🧸 ✨ 🧸</div>
+        <h2 data-aos="fade-up">Gallery</h2>
+
+        <div id="gallerySlider" class="mt-4">
+            <img id="sliderImg" src="photo1.jpg" class="img-fluid" style="border-radius:20px;">
+        </div>
+    </section>
+
+    <section id="gallery" class="parallax-gallery">
+
+        <h2 class="text-center mb-5">
+            Precious Moments 📸
+        </h2>
+
+        <div class="p-item">
+            <img src="img1.jpg" alt="">
+        </div>
+
+        <div class="p-item">
+            <img src="img2.jpg" alt="">
+        </div>
+
+        <div class="p-item">
+            <img src="img3.jpg" alt="">
+        </div>
+
+    </section>
+
+    <!-- MAP -->
+    <section class="container py-5 text-center">
+        <div class="divider">🧸 ✨ 🧸</div>
+        <h2 data-aos="fade-up">Venue Location</h2>
+
+        <iframe src="https://maps.google.com/maps?q=Nagpur&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%"
+            height="300" style="border:0;border-radius:15px;margin-top:20px;" allowfullscreen>
+        </iframe>
+    </section>
+
+    <!-- RSVP -->
+    <section class="container py-5">
+        <div class="divider">🧸 ✨ 🧸</div>
+        <div class="rsvp-box text-center" data-aos="zoom-in">
+            <h2>Please Reply</h2>
+
+            <form action="PASTE_GOOGLE_FORM_ACTION_HERE" method="POST">
+                <input class="form-control mb-3" placeholder="Your Name" required>
+                <input class="form-control mb-3" placeholder="Mobile Number" required>
+                <button class="btn btn-warning">Send Wishes</button>
+            </form>
+
+            <p id="rsvpMsg" class="mt-3"></p>
+        </div>
+    </section>
+
+    <!-- 🎵 Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- 🎵 Floating Music Button -->
+    <div id="musicBtn">🔊</div>
+
+    <a id="waShare" class="wa-btn" target="_blank">💬</a>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        AOS.init();
+
+        function openInvite() {
+            document.getElementById("openScreen").style.display = "none";
+            document.getElementById("music").play();
+            launchConfetti();
+        }
+
+        /* 🎀 confetti */
+
+        function launchConfetti() {
+            for (let i = 0; i < 80; i++) {
+                const c = document.createElement("div");
+                c.style.position = "fixed";
+                c.style.left = Math.random() * 100 + "%";
+                c.style.top = "-10px";
+                c.style.width = "6px";
+                c.style.height = "6px";
+                c.style.background =
+                    ["#ffd700", "#ff9ec4", "#9ad9ff", "#ffffff"]
+                    [Math.floor(Math.random() * 4)];
+                c.style.zIndex = "9999";
+                c.style.animation = `confettiFall ${3 + Math.random() * 2}s linear`;
+                document.body.appendChild(c);
+
+                setTimeout(() => c.remove(), 5000);
+            }
+        }
+
+        const music = document.getElementById("bgMusic");
+        const btn = document.getElementById("musicBtn");
+
+        // 🔁 restore previous state
+        if (localStorage.getItem("musicPlaying") === "true") {
+            music.play().catch(() => { });
+            btn.innerHTML = "🔊";
+        } else {
+            btn.innerHTML = "🔇";
+        }
+
+        // 👆 first interaction autoplay fix
+        document.body.addEventListener("click", () => {
+            if (music.paused && localStorage.getItem("musicPlaying") === "true") {
+                music.play().catch(() => { });
+            }
+        }, { once: true });
+
+        // 🔘 toggle button
+        btn.addEventListener("click", () => {
+            if (music.paused) {
+                music.play();
+                btn.innerHTML = "🔊";
+                localStorage.setItem("musicPlaying", "true");
+            } else {
+                music.pause();
+                btn.innerHTML = "🔇";
+                localStorage.setItem("musicPlaying", "false");
+            }
+        });
+
+        /* ⏳ countdown */
+        const targetDate = new Date("March 19, 2026 10:00:00").getTime();
+
+        setInterval(() => {
+            const now = new Date().getTime();
+            const gap = targetDate - now;
+
+            const d = Math.floor(gap / (1000 * 60 * 60 * 24));
+            const h = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((gap % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").innerHTML =
+                `${d}d ${h}h ${m}m ${s}s`;
+        }, 1000);
+
+        /* RSVP fake submit */
+        function submitRSVP(e) {
+            e.preventDefault();
+            document.getElementById("rsvpMsg").innerText =
+                "Thank you! Your wishes have been received ❤️";
+        }
+
+        /* 🍼 create particles */
+
+        const particlesContainer = document.querySelector(".particles");
+
+        for (let i = 0; i < 20; i++) {
+            const span = document.createElement("span");
+            span.innerHTML = "🎈";
+            span.style.left = Math.random() * 100 + "%";
+            span.style.animationDuration = (6 + Math.random() * 6) + "s";
+            particlesContainer.appendChild(span);
+        }
+
+        /* 💌 guest name from URL */
+
+        const params = new URLSearchParams(window.location.search);
+        const guest = params.get("guest");
+
+        if (guest) {
+            document.getElementById("guestLine").innerText =
+                `Dear ${guest}, you are invited to the Naming Ceremony`;
+        }
+
+        /* 🎞️ auto gallery */
+
+        const images = ["photo1.jpg", "photo2.jpg", "photo3.jpg"];
+        let current = 0;
+
+        setInterval(() => {
+            current = (current + 1) % images.length;
+            document.getElementById("sliderImg").src = images[current];
+        }, 3000);
+
+        /* 🎨 theme toggle */
+
+        document.getElementById("themeToggle").onclick = () => {
+            document.body.classList.toggle("pastel");
+        };
+
+
+        /* 📱 WhatsApp share */
+
+        const pageUrl = encodeURIComponent(window.location.href);
+        const text = encodeURIComponent("You are invited to our Naming Ceremony 👶");
+
+        document.getElementById("waShare").href =
+            `https://wa.me/?text=${text}%20${pageUrl}`;
+
+
+        /* 💫 cursor sparkle */
+
+        document.addEventListener("mousemove", (e) => {
+            const s = document.createElement("div");
+            s.innerHTML = "✨";
+            s.style.position = "fixed";
+            s.style.left = e.clientX + "px";
+            s.style.top = e.clientY + "px";
+            s.style.pointerEvents = "none";
+            s.style.fontSize = "10px";
+            s.style.zIndex = "9999";
+            s.style.animation = "sparkleFade 1s linear";
+            document.body.appendChild(s);
+
+            setTimeout(() => s.remove(), 1000);
+        });
+
+
+        /* 🌌 Safe parallax */
+
+        const pItems = document.querySelectorAll(".p-item img");
+
+        window.addEventListener("scroll", () => {
+            const scrollTop = window.pageYOffset;
+
+            pItems.forEach((img) => {
+                const rect = img.getBoundingClientRect();
+                const offset = rect.top + scrollTop;
+                const speed = (scrollTop - offset) * 0.15;
+                img.style.transform = `translateY(${speed}px)`;
+            });
+        });
+
+        const babyFrame = document.getElementById("babyFrame");
+
+        babyFrame.addEventListener("click", () => {
+            if (!babyFrame.classList.contains("revealed")) {
+                babyFrame.classList.add("revealed");
+
+                // 🎆 Confetti burst
+                confetti({
+                    particleCount: 120,
+                    spread: 80,
+                    origin: { y: 0.6 }
+                });
+
+                // 🎉 extra side bursts (premium feel)
+                setTimeout(() => {
+                    confetti({
+                        particleCount: 60,
+                        angle: 60,
+                        spread: 55,
+                        origin: { x: 0 }
+                    });
+
+                    confetti({
+                        particleCount: 60,
+                        angle: 120,
+                        spread: 55,
+                        origin: { x: 1 }
+                    });
+                }, 250);
+            }
+        });
+    </script>
+
+</body>
+
+</html>
