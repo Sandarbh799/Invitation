@@ -39,7 +39,7 @@
         <h2 class="reveal-title">✨ Meet Our Little Star ✨</h2>
 
         <div class="baby-frame" id="babyFrame">
-            <img src="img1.jpg" alt="Baby Photo" id="babyPhoto">
+            <img src="img2.jpeg" alt="Baby Photo" id="babyPhoto">
             <div class="reveal-overlay" id="revealOverlay">
                 Tap to Reveal 👶
             </div>
@@ -142,14 +142,20 @@
     <section class="parallax-gallery">
         <h2 class="gallery-title">📸 Precious Moments</h2>
 
-        <div class="gallery-grid">
-            <img src="102.jpg" class="parallax-img">
-            <img src="944.jpg" class="parallax-img">
-            <img src="953.jpg" class="parallax-img">
-            <img src="4935.jpg" class="parallax-img">
-            <img src="2150795866.jpg" class="parallax-img">
-            <img src="956.jpg" class="parallax-img">
+        <div class="parallax-wrapper">
+            <div class="parallax-column slow">
+                <img src="102.jpg">
+            </div>
+
+            <div class="parallax-column medium">
+                <img src="944.jpg">
+            </div>
+
+            <div class="parallax-column fast">
+                <img src="953.jpg">
+            </div>
         </div>
+    </section>
     </section>
 
     <!-- MAP -->
@@ -182,7 +188,7 @@
         <p id="rsvpMsg"></p>
 
     </section>
-    
+
 
     <!-- 🎵 Background Music -->
     <audio id="bgMusic" loop>
@@ -193,7 +199,7 @@
     <div id="musicBtn">🔊</div>
 
     <a id="waShare" class="wa-btn" target="_blank">💬</a>
-    
+
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
@@ -470,16 +476,17 @@
         animatePetals();
 
 
-        // ===== REAL PARALLAX SCROLL =====
-        window.addEventListener("scroll", () => {
-            const images = document.querySelectorAll(".parallax-img");
-            const scrollY = window.scrollY;
+        // // ===== REAL PARALLAX SCROLL =====
+        // window.addEventListener("scroll", () => {
+        //     const images = document.querySelectorAll(".parallax-img");
+        //     const scrollY = window.scrollY;
 
-            images.forEach((img, index) => {
-                const speed = (index % 3 + 1) * 0.15;
-                img.style.transform = `translateY(${scrollY * speed * 0.1}px)`;
-            });
-        });
+        //     images.forEach((img, index) => {
+        //         const speed = (index % 3 + 1) * 0.15;
+        //         img.style.transform = `translateY(${scrollY * speed * 0.1}px)`;
+        //     });
+        // });
+        
     </script>
 
 </body>
